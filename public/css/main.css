@@ -1,0 +1,12 @@
+
+body {
+  margin-top: 70px;
+}
+
+canvas {
+  border: 1px solid red;
+}
+
+canvas:hover {
+  cursor: none;
+}
