@@ -28,6 +28,42 @@ var CrossHairInteraction = function(ctx, boundingRect, redrawCallback) {
     }
 }
 
+var LineInteraction = function(ctx, boundingRect, redrawCallback) {
+    this.ctx = ctx;
+    this.boundingRect = boundingRect;
+    this.redrawCallback = redrawCallback;
+    this.nPoint = 0;
+    this.lastX = 0;
+    this.lastY = 0;
+
+    this.mousemove = function(evt) {
+        if (this.nPoint == 0) {
+            return;
+        }
+        var x = evt.clientX - this.boundingRect.left;
+        var y = evt.clientY - this.boundingRect.top;
+        ctx.strokeStyle = "#f00";
+        ctx.beginPath();
+        ctx.moveTo(this.lastX, this.lastY);
+        ctx.lineTo(x, y);
+        ctx.stroke();
+        this.redrawCallback();
+    }
+
+    this.click = function(evt) {
+        var x = evt.clientX - this.boundingRect.left;
+        var y = evt.clientY - this.boundingRect.top;
+        this.lastX = x;
+        this.lastY = y;
+        console.log("wait for 2. point");
+        if (this.nPoint == 0) {
+            this.nPoint++;
+        }
+        else {
+            this.nPoint = 0;
+        }
+    }
+}
 
 
 var interactionList = [];
@@ -74,6 +110,11 @@ $("#canvas").on("mousemove", function(evt) {
             interaction.mousemove(evt);
         }
     })
+});
+
+$("#ialine").on("click", function(evt) {
+    interactionList.push( new LineInteraction(ctxBuffer, rect, redraw));
+    console.log("Line");
 });
 
 window.addEventListener("resize", function() {
