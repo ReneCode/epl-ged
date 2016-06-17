@@ -8,5 +8,6 @@ canvas {
 }
 
 canvas:hover {
-  cursor: none;
+  cursor: default;
 }
+

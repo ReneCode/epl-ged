@@ -1,20 +1,28 @@
 {
-  "name": "epl-ged",
-  "version": "0.0.0",
-  "private": true,
+  "name": "lazy-js-loading",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "node ./bin/www"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "copy:jquery": "cp 'node_modules/jquery/dist/jquery.min.js' ./dist",
+    "dev": "lite-server",
+    "pack": "webpack --progress --colors --watch"
   },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "body-parser": "~1.13.2",
-    "cookie-parser": "~1.3.5",
-    "debug": "~2.2.0",
-    "express": "~4.13.1",
-    "morgan": "~1.6.1",
-    "pug": "^2.0.0-beta3",
-    "serve-favicon": "~2.3.0"
+    "es6-module-loader": "^0.17.11",
+    "express": "^4.13.4",
+    "jquery": "^3.0.0",
+    "traceur": "0.0.111"
   },
   "devDependencies": {
-    "eslint": "^2.12.0"
+    "babel-core": "^6.9.1",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "imports-loader": "^0.6.5",
+    "lite-server": "^2.2.0",
+    "webpack": "^1.13.1"
   }
 }
