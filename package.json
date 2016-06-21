@@ -2,12 +2,11 @@
   "name": "epl-ged",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "copy:jquery": "cp 'node_modules/jquery/dist/jquery.min.js' ./dist",
     "dev": "lite-server",
-    "pack": "webpack --progress --colors --watch"
+    "webpack": "webpack --progress --colors --watch"
   },
   "author": "",
   "license": "ISC",
