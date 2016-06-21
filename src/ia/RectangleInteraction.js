@@ -1,17 +1,17 @@
 
-import { Line } from '../Line.js'
+import { Rectangle } from '../Rectangle.js'
 import { databaseStore } from '../DatabaseStore.js'
-import { drawCanvas } from '../DrawCanvas.js'
 
-export class LineInteraction {
+export class RectangleInteraction {
     constructor() {
         this._p1 = undefined;
     }
 
-    getLine(pt) {
-        let l = new Line();
-        l.initFromPoints(this._p1, pt);
-        return l;
+    getRectangle(pt) {
+        let r = new Rectangle(this._p1, 
+            {   w: pt.x - this._p1.x,
+                h: pt.y - this._p1.y });
+        return r;
     }
 
     mousemove(pt) {
@@ -19,7 +19,7 @@ export class LineInteraction {
             return;
         }
         // temporary line
-        databaseStore.addItem(this.getLine(pt), true);
+        databaseStore.addItem(this.getRectangle(pt), true);
     }
 
     click(pt) {
@@ -27,7 +27,7 @@ export class LineInteraction {
             this._p1 = pt;
         }
         else {
-            databaseStore.addItem( this.getLine(pt) );
+            databaseStore.addItem( this.getRectangle(pt) );
             this._p1 = undefined;
         }
     }

@@ -2,6 +2,7 @@
 import { InteractionList } from './InteractionList.js'
 import { TraceCoordinateInteraction } from './ia/TraceCoordinateInteraction.js'
 import { LineInteraction } from './ia/LineInteraction.js'
+import { RectangleInteraction } from './ia/RectangleInteraction.js'
 
 import { drawCanvas } from './DrawCanvas.js'
 import { databaseStore } from './DatabaseStore.js'
@@ -21,7 +22,6 @@ reloadCanvas();
 let interactionList = new InteractionList(rect);
 
 //interactionList.add(new TraceCoordinateInteraction());
-interactionList.add(new LineInteraction());
 
 
 function reloadCanvas() {
@@ -51,3 +51,12 @@ $("#aclear").on("click", function(evt) {
 		databaseStore.commit();
 	});
 });
+
+
+$("#ialine").on("click", function(evt) {
+	interactionList.add(new LineInteraction());
+})
+
+$("#iarectangle").on("click", function(evt) {
+	interactionList.add(new RectangleInteraction());
+})

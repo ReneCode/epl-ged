@@ -46,6 +46,15 @@ class DrawCanvas {
     }
 
 
+    drawRectangle(rect) {
+        this._bufferCtx.beginPath();
+        this._bufferCtx.rect( rect.x, rect.y, rect.w, rect.h);
+        this._bufferCtx.stroke();
+
+        this.setDirty();
+    }
+
+
     drawLine(line) {
         this._bufferCtx.beginPath();
         this._bufferCtx.moveTo( line.p1.x, line.p1.y );

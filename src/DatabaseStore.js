@@ -1,5 +1,6 @@
 
 import { Line } from './Line.js'
+import { Rectangle } from './Rectangle.js'
 import { drawCanvas } from './DrawCanvas'
 
 const URL_API = "http://localhost:3010/api/ged";
@@ -44,6 +45,10 @@ class DatabaseStore {
                         o = new Line();
                         o.fromJson(d);
                         break;
+                    case "rect":
+                        o = new Rectangle();
+                        o.fromJson(d);
+                        break;
                 }
                 if (o) {
                     ds._items.push( o );
@@ -57,12 +62,12 @@ class DatabaseStore {
         })
     }
 
-    addLine(line, temporary = false) {
+    addItem(item, temporary = false) {
         if (temporary) {
-            this._tmpItems.push(line);
+            this._tmpItems.push(item);
         }
         else {        
-            this._items.push(line);
+            this._items.push(item);
         }
 
         if (!temporary) {
@@ -70,7 +75,7 @@ class DatabaseStore {
             $.ajax({
                 url: URL_API,
                 method: "POST",
-                data: JSON.stringify(line),
+                data: JSON.stringify(item),
                 contentType: 'application/json',
             })
             .done( function(data) {
