@@ -1,13 +1,12 @@
 
 import { Line } from '../Line.js'
 import { databaseStore } from '../DatabaseStore.js'
+import { drawCanvas } from '../DrawCanvas.js'
 
 export class LineInteraction {
-    constructor(drawCanvas) {
+    constructor() {
         this._p1 = undefined;
-        this._drawCanvas = drawCanvas;
     }
-
 
     getLine(pt) {
         let l = new Line();
@@ -19,7 +18,8 @@ export class LineInteraction {
         if (this._p1 == undefined) {
             return;
         }
-        this._drawCanvas.drawRubberLine(this.getLine(pt));
+        // temporary line
+        databaseStore.addLine(this.getLine(pt), true);
     }
 
     click(pt) {

@@ -1,14 +1,20 @@
 
-export class DrawCanvas {
-    constructor(width, height) {
+class DrawCanvas {
+    constructor() {
         this._bufferCanvas = document.createElement('canvas');
+        this._bufferCtx = this._bufferCanvas.getContext('2d');
+        this._dirty = false;
+    }
+
+    init(targetCtx) {
+        this._targetCtx = targetCtx;
+    }
+
+    resize(width, height) {
         this._width = width;
         this._height = height;     
         this._bufferCanvas.width = width;
         this._bufferCanvas.height = height;   
-        this._bufferCtx = this._bufferCanvas.getContext('2d');
-
-        this._dirty = false;
     }
 
     redraw(targetCtx) {
@@ -24,6 +30,19 @@ export class DrawCanvas {
 
     setDirty() {
         this._dirty = true;
+    }
+
+    clear() {
+        this._bufferCtx.fillStyle = '#fff';
+        this._bufferCtx.fillRect(0, 0, this._width, this._height);
+        this._dirty = true;
+    }
+
+    show() {
+        if (this._dirty) {
+            this._targetCtx.drawImage(this._bufferCanvas, 0, 0);
+            this._dirty = false;  
+        }
     }
 
 
@@ -43,3 +62,6 @@ export class DrawCanvas {
         this._bufferCtx.restore();
     }
 }
+
+// singleton
+export let drawCanvas = new DrawCanvas()
