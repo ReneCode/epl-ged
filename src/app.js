@@ -4,7 +4,7 @@ import { TraceCoordinateInteraction } from './ia/TraceCoordinateInteraction.js'
 import { LineInteraction } from './ia/LineInteraction.js'
 
 import { DrawCanvas } from './DrawCanvas.js'
-import { DatabaseStore } from './DatabaseStore.js'
+import { databaseStore } from './DatabaseStore.js'
 
 let canvas = $("#canvas")[0];
 var rect = canvas.getBoundingClientRect();
@@ -13,12 +13,16 @@ var targetCtx = canvas.getContext('2d');
 let drawCanvas = new DrawCanvas(rect.right - rect.left, 
 								rect.bottom - rect.top);
 
-let databaseStore = new DatabaseStore(drawCanvas);
+databaseStore.init(drawCanvas);
+databaseStore.load( function() {
+	databaseStore.drawItems(drawCanvas);
+	drawCanvas.redraw(targetCtx);
+});
 
 let interactionList = new InteractionList(rect);
 
 //interactionList.add(new TraceCoordinateInteraction());
-interactionList.add(new LineInteraction(drawCanvas, databaseStore));
+interactionList.add(new LineInteraction(drawCanvas));
 
 $("#canvas").on("mousemove", function(evt) {
 	interactionList.mousemove(evt);
@@ -34,6 +38,12 @@ $("#canvas").on("click", function(evt) {
 
 	drawCanvas.redraw(targetCtx);
 })
+
+
+$("#aclear").on("click", function(evt) {
+
+});
+
 
 /*
 

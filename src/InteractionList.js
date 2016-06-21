@@ -8,6 +8,7 @@ export class InteractionList {
 		this.interactions = [];
 		this.boundingRect = boundingRect;
 	}
+	
 	add(ia) {
 		this.interactions.push(ia);
 	}

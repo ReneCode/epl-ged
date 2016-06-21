@@ -1,18 +1,25 @@
 
 import { Line } from '../Line.js'
+import { databaseStore } from '../DatabaseStore.js'
 
 export class LineInteraction {
-    constructor(drawCanvas, storeCanvas) {
+    constructor(drawCanvas) {
         this._p1 = undefined;
         this._drawCanvas = drawCanvas;
-        this._storeCanvas = storeCanvas;
+    }
+
+
+    getLine(pt) {
+        let l = new Line();
+        l.initFromPoints(this._p1, pt);
+        return l;
     }
 
     mousemove(pt) {
         if (this._p1 == undefined) {
             return;
         }
-        this._drawCanvas.drawRubberLine( new Line(this._p1, pt) );
+        this._drawCanvas.drawRubberLine(this.getLine(pt));
     }
 
     click(pt) {
@@ -20,7 +27,7 @@ export class LineInteraction {
             this._p1 = pt;
         }
         else {
-            this._storeCanvas.addLine( new Line(this._p1, pt) );
+            databaseStore.addLine( this.getLine(pt) );
             this._p1 = undefined;
         }
     }
