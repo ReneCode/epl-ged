@@ -12,7 +12,6 @@ export class Rectangle {
         }
     }
 
-
     fromJson(obj) {
         if (obj.item == 'rect') {
             this.x = obj.x;
@@ -22,9 +21,8 @@ export class Rectangle {
         }
     }
 
-
-
     draw(drawCanvas) {
         drawCanvas.drawRectangle(this);
     }
 }
+

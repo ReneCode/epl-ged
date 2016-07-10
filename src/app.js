@@ -1,11 +1,11 @@
 
-import { InteractionList } from './InteractionList.js'
-import { TraceCoordinateInteraction } from './ia/TraceCoordinateInteraction.js'
-import { LineInteraction } from './ia/LineInteraction.js'
-import { RectangleInteraction } from './ia/RectangleInteraction.js'
+import { drawCanvas } from './DrawCanvas';
+import { databaseStore } from './DatabaseStore';
+import { iaManager } from './ia/IaManager';
+import { EventPoint } from './ia/EventPoint';
+import { Point } from './Point';
 
-import { drawCanvas } from './DrawCanvas.js'
-import { databaseStore } from './DatabaseStore.js'
+import * as types from './ia/actionTypes';
 
 let canvas = $("#canvas")[0];
 var rect = canvas.getBoundingClientRect();
@@ -19,9 +19,7 @@ databaseStore.init();
 
 reloadCanvas();
 
-let interactionList = new InteractionList(rect);
-
-//interactionList.add(new TraceCoordinateInteraction());
+let eventPoint = new EventPoint(rect);
 
 
 function reloadCanvas() {
@@ -35,15 +33,28 @@ function redraw() {
 }
 
 $("#canvas").on("mousemove", function(evt) {
-	interactionList.mousemove(evt);
+	evt.preventDefault();
+
+	let pt = eventPoint.getPoint(evt);
+	iaManager.dispatch( {type: types.EventMouseMove, 
+						event: {point:pt} } );
 
 	databaseStore.commit();
 });
 
 $("#canvas").on("click", function(evt) {
-	interactionList.click(evt);
+	evt.preventDefault();
+	let pt = eventPoint.getPoint(evt);
+	iaManager.dispatch( {type: types.EventLMouseClick, 
+						event: {point:pt} } );
+
 	databaseStore.commit();
-})
+});
+
+$("#canvas").on("keydown", function(evt) {
+
+});
+
 
 
 $("#aclear").on("click", function(evt) {
@@ -53,10 +64,12 @@ $("#aclear").on("click", function(evt) {
 });
 
 
+
+
 $("#ialine").on("click", function(evt) {
-	interactionList.add(new LineInteraction());
-})
+	iaManager.start("IaLine");
+});
 
 $("#iarectangle").on("click", function(evt) {
-	interactionList.add(new RectangleInteraction());
-})
+	iaManager.start("IaRectangle");
+});

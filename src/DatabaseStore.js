@@ -1,7 +1,7 @@
 
-import { Line } from './Line.js'
-import { Rectangle } from './Rectangle.js'
-import { drawCanvas } from './DrawCanvas'
+import { Line } from './Line.js';
+import { Rectangle } from './Rectangle.js';
+import { drawCanvas } from './DrawCanvas';
 
 const URL_API = "http://localhost:3010/api/ged";
 
@@ -26,7 +26,7 @@ class DatabaseStore {
             if (callback) {
                 callback();
             }
-        })
+        });
     }
 
     load(callback) {
@@ -59,7 +59,7 @@ class DatabaseStore {
                 // finished loading all items from Server
                 callback();
             }
-        })
+        });
     }
 
     addItem(item, temporary = false) {

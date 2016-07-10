@@ -1,7 +1,7 @@
 
-import { Line } from '../Line.js'
-import { databaseStore } from '../DatabaseStore.js'
-import { drawCanvas } from '../DrawCanvas.js'
+import { Line } from '../Line.js';
+import { databaseStore } from '../DatabaseStore.js';
+import { drawCanvas } from '../DrawCanvas.js';
 
 export class LineInteraction {
     constructor() {
@@ -9,8 +9,7 @@ export class LineInteraction {
     }
 
     getLine(pt) {
-        let l = new Line();
-        l.initFromPoints(this._p1, pt);
+        let l = new Line(this._p1, pt);
         return l;
     }
 
