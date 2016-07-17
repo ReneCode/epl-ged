@@ -54,7 +54,9 @@ $("#canvas").on("click", function(evt) {
 });
 
 $("#canvas").on("keydown", function(evt) {
-
+	evt.preventDefault();
+	iaManager.dispatch( {type: types.EventKeyPress, 
+						 keyCode: evt.keyCode });
 });
 
 
@@ -69,9 +71,11 @@ $("#aclear").on("click", function(evt) {
 
 
 $("#ialine").on("click", function(evt) {
+	iaManager.clearIaStack();
 	iaManager.start("IaLine");
 });
 
 $("#iarectangle").on("click", function(evt) {
+	iaManager.clearIaStack();
 	iaManager.start("IaRectangle");
 });

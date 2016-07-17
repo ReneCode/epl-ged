@@ -1,22 +1,15 @@
 
 import * as types from './actionTypes';
 import status from '../status/status';
+import IaBase from './IaBase';
 
-export class IaPoint  {
+export class IaPoint extends IaBase {
     constructor(iaManager) {
-        this._iaManager = iaManager;
-        this.start = this.start.bind(this);
-        this.stop = this.stop.bind(this);
-        this.onAction = this.onAction.bind(this);
+        super(iaManager);
     }
 
     start() {
         this._p = undefined;
-        this._iaManager.subscribe(this.onAction);
-    }
-
-    stop() {
-        this._iaManager.unsubscribe(this.onAction);
     }
 
     onAction(action) {
@@ -31,8 +24,11 @@ export class IaPoint  {
                 this._iaManager.dispatch({type: types.IaPointClick, 
                         data:{point:this._p}});
                 break;
-            case types.EventKeyEscape:
-                this._iaManager.dispatch({type: types.IaPointCancel});
+            case types.EventKeyPress:
+                if (action.keyCode == 27) {
+                    // excape
+                    this._iaManager.dispatch({type: types.IaPointCancel});
+                }
                 break;
         }
     }

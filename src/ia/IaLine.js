@@ -3,27 +3,18 @@ import * as types from './actionTypes';
 import {Line} from '../Line';
 import {databaseStore} from '../DatabaseStore';
 import status from '../status/status';
+import IaBase from './IaBase';
 
-export class IaLine  {
+export class IaLine extends IaBase {
     constructor(iaManager) {
-        this._iaManager = iaManager;
-        this.start = this.start.bind(this);
-        this.stop = this.stop.bind(this);
-        this.onAction = this.onAction.bind(this);
+        super(iaManager);
     }
 
     start() {
         this._p1 = undefined;
         this._p2 = undefined;
-        this._iaManager.subscribe(this.onAction);
-        this._iaManager.start("IaPoint");
+        this.startInteraction("IaPoint");
     }
-
-    stop() {
-        this._iaManager.stop("IaPoint");
-        this._iaManager.unsubscribe(this.onAction);
-    }
-
 
     drawRubberband(pt) {
         // temporary line

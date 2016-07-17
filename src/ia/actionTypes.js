@@ -4,7 +4,7 @@ export const EventMouseMove = "Event.MouseMove";
 export const EventLMouseClick = "Event.LMouseClick";
     // event.point
 
-export const EventKeyEscape = "Event.KeyEscape";
+export const EventKeyPress = "Event.KeyPress";
 
 export const IaPointUpdate = "IaPoint.Update";
 export const IaPointClick = "IaPoint.Click";

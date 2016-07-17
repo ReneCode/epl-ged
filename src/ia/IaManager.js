@@ -8,35 +8,11 @@ class IaManager {
 
     constructor() {
         this._actionQue = [];
-        this._subscribers = [];
         this._iaMap = {};
+        this._iaStack = [];
     }
 
-    subscribe(func) {
-        this._subscribers.push(func);
-    }
-
-    unsubscribe(func) {
-        for (let i=0; i<this._subscribers.length; i++) {
-            if (this._subscribers[i] == func) {
-                this._subscribers.splice(i, 1);
-                return;
-            }
-        }
-    }
-
-    register(name, ia) {
-        this._iaMap[name] = ia;
-    }
-
-
-
-    unregister(name, ia) {
-        this._iaMap[name] = undefined;
-    }
-
-
-    start(name) {
+    getInteractionByName(name) {
         let ia = this._iaMap[name];
         if (ia == undefined) {
             // first create the interaction
@@ -54,12 +30,33 @@ class IaManager {
                     break;
                 
                 default:
-                    // do nothing
-                    return;
+                    throw("ia:"+ name + " not found,");
             }
-            this.register(name, ia);
+            if (ia) {
+                this._iaMap[name] = ia;
+            }
         }
-        ia.start();
+        return ia;
+    }
+
+    clearIaStack() {
+        // stop all interactions (in reverse order)
+        for (let i=this._iaStack.length-1; i>=0; i--) {
+            let ia = this._iaStack[i];
+            if (ia.stop) {
+                ia.stop();
+            }
+        }
+        this._iaStack = [];
+    }
+
+
+    start(name) {
+        let ia = this.getInteractionByName(name);
+        this._iaStack.push(ia);
+        if (ia.start) {
+            ia.start();
+        }
     }
 
     dispatch(action) {
@@ -70,9 +67,13 @@ class IaManager {
             let iAction = 0;
             while (iAction < this._actionQue.length) {
                 let action = this._actionQue[iAction];
-                this._subscribers.forEach(function(subscriber) {
-                    subscriber(action);
-                });
+
+                for (let i=this._iaStack.length-1; i>=0; i--) {
+                    let ia = this._iaStack[i];
+                    if (ia.onAction) {
+                        ia.onAction(action);
+                    }
+                }
                 iAction++;
             }
             this._actionQue = [];
