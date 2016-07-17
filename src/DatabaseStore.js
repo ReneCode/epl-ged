@@ -2,8 +2,7 @@
 import { Line } from './Line.js';
 import { Rectangle } from './Rectangle.js';
 import { drawCanvas } from './DrawCanvas';
-
-const URL_API = "http://localhost:3010/api/ged";
+import itemApi from './api/MockItemApi';
 
 class DatabaseStore {
     
@@ -16,27 +15,23 @@ class DatabaseStore {
 
     deleteAll(callback) {
         let ds = this;
-        $.ajax({
-            url: URL_API,
-            method: "DELETE"
-        })
-        .done(function() {
+        itemApi.deleteAllItems()
+        .then( () => {
             ds._items = [];
             drawCanvas.setDirty();
             if (callback) {
                 callback();
             }
+        })
+        .catch( (error) => {
+            throw(error);
         });
     }
 
     load(callback) {
         let ds = this;
-        $.ajax({
-            url: URL_API,
-            method: "GET",
-            contentType: 'application/json',      
-        })
-        .done( function(data) {
+        itemApi.getAllItems()
+        .then( function(data) {
             ds._item = [];
             data.forEach(function(d) {
                 let o = undefined;
@@ -72,13 +67,8 @@ class DatabaseStore {
 
         if (!temporary) {
             let ds = this;
-            $.ajax({
-                url: URL_API,
-                method: "POST",
-                data: JSON.stringify(item),
-                contentType: 'application/json',
-            })
-            .done( function(data) {
+            itemApi.saveItem(item)
+            .then( function(data) {
                 // may be call some callback
             });
         }
