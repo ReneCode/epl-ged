@@ -19,7 +19,7 @@ databaseStore.init();
 
 reloadCanvas();
 
-let eventPoint = new EventPoint(rect);
+let eventPoint = new EventPoint(canvas);
 
 
 function reloadCanvas() {
@@ -31,6 +31,8 @@ function reloadCanvas() {
 function redraw() {
 	drawCanvas.redraw(targetCtx);
 }
+
+
 
 $("#canvas").on("mousemove", function(evt) {
 	evt.preventDefault();

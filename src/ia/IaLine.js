@@ -2,6 +2,7 @@
 import * as types from './actionTypes';
 import {Line} from '../Line';
 import {databaseStore} from '../DatabaseStore';
+import status from '../status/status';
 
 export class IaLine  {
     constructor(iaManager) {
@@ -31,6 +32,7 @@ export class IaLine  {
 
     createLine() {
         databaseStore.addItem(new Line(this._p1, this._p2));
+        status.addText("Line added");  
     }
 
     onAction(action) {

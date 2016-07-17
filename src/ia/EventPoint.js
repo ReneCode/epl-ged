@@ -3,19 +3,18 @@ import { Point } from "../Point.js";
 
 export class EventPoint {
 
-	constructor(boundingRect) {
-		this._boundingRect = boundingRect;
+	constructor(canvas) {
+		this._canvas = canvas;
 	}
 	
 	getPoint(evt) {
 		evt.preventDefault();
+	    var rect = this._canvas.getBoundingClientRect();
 		let pt = new Point(
-				evt.clientX - this._boundingRect.left,
-				evt.clientY - this._boundingRect.top
-			);
-	
+				evt.clientX - rect.left,
+				evt.clientY - rect.top
+			);	
 		return pt;
-		
 	}
 
 }

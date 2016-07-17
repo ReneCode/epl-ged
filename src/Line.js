@@ -14,8 +14,6 @@ export class Line {
         }
     }
 
-
-
     draw(drawCanvas) {
         drawCanvas.drawLine(this);
     }

@@ -1,5 +1,6 @@
 
 import * as types from './actionTypes';
+import status from '../status/status';
 
 export class IaPoint  {
     constructor(iaManager) {
@@ -35,4 +36,5 @@ export class IaPoint  {
                 break;
         }
     }
+
 }

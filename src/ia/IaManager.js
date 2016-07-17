@@ -2,6 +2,7 @@
 import {IaLine} from './IaLine';
 import {IaPoint} from './IaPoint';
 import {IaRectangle} from './IaRectangle';
+import status from '../status/status';
 
 class IaManager {
 
@@ -76,6 +77,11 @@ class IaManager {
             }
             this._actionQue = [];
         }
+    }
+
+    showStatus() {
+        status.clear();
+        
     }
 
 }

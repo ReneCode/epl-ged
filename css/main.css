@@ -11,3 +11,18 @@ canvas:hover {
   cursor: default;
 }
 
+.iamenu {
+  list-style-type: none;
+  padding-left: 0;
+  margin-left: 10px;
+}
+
+.status {
+  padding: 2px;
+  font-size: 0.9em;
+  height: 200px;
+  color: #3a3a3a;
+  background-color: #eaeaea;
+
+  overflow-y: scroll;
+}
