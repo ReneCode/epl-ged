@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "lite-server",
-    "webpack": "webpack --progress --colors --watch"
+    "webpack": "webpack --progress --colors --watch",
+    "start": "npm-run-all --parallel webpack dev"
   },
   "author": "",
   "license": "ISC",
@@ -23,6 +24,7 @@
     "glob": "^7.0.5",
     "imports-loader": "^0.6.5",
     "lite-server": "^2.2.0",
+    "npm-run-all": "^2.3.0",
     "webpack": "^1.13.1"
   }
 }
