@@ -15,8 +15,14 @@ canvas:hover {
   list-style-type: none;
   padding-left: 0;
   margin-left: 10px;
+  display: flex;
 }
 
+.iamenu > li {
+  padding: 0px 5px 2px;
+  font-weight: bold;
+  border: 1px solid #ddd;
+}
 .status {
   margin-left: 2px;
   font-size: 0.9em;
