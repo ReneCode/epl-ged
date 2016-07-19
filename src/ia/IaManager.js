@@ -2,6 +2,7 @@
 import {IaLine} from './IaLine';
 import {IaPoint} from './IaPoint';
 import {IaRectangle} from './IaRectangle';
+import IaSymbol from './IaSymbol';
 import status from '../status/status';
 
 class IaManager {
@@ -27,6 +28,10 @@ class IaManager {
 
                 case "IaPoint":
                     ia = new IaPoint(this); 
+                    break;
+                
+                case "IaSymbol":
+                    ia = new IaSymbol(this);
                     break;
                 
                 default:

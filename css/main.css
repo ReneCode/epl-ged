@@ -1,6 +1,6 @@
 
 body {
-  margin-top: 70px;
+  margin-top: 10px;
 }
 
 canvas {
@@ -18,9 +18,9 @@ canvas:hover {
 }
 
 .status {
-  padding: 2px;
+  margin-left: 2px;
   font-size: 0.9em;
-  height: 200px;
+  height: 150px;
   color: #3a3a3a;
   background-color: #eaeaea;
 

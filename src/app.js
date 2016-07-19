@@ -79,3 +79,8 @@ $("#iarectangle").on("click", function(evt) {
 	iaManager.clearIaStack();
 	iaManager.start("IaRectangle");
 });
+
+$("#iasymbol").on("click", function(evt) {
+	iaManager.clearIaStack();
+	iaManager.start("IaSymbol");
+});

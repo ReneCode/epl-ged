@@ -1,5 +1,5 @@
 
-import { Point } from "../Point.js";
+import Point from "../Point.js";
 
 export class EventPoint {
 

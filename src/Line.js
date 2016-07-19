@@ -1,5 +1,5 @@
 
-export class Line {
+export default class Line {
 
     constructor(pt1, pt2) {
         this.item = 'line';
