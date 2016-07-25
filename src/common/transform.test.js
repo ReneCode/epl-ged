@@ -23,14 +23,25 @@ describe('coordinate-mathe', function() {
 	});
 
 	describe('wc2dc transform', function() {
-		it('should translate wc to dc', function() {
+		it('should translate wc to dc + y-center', function() {
 			let transformCoord = new Coordinate();
 			transformCoord.setViewport(3000, 3000, 5000, 4000);
 			transformCoord.setDevice(500, 400);
 			let wcP = {x:3500, y:4000};
 			let dcP = transformCoord.worldToDevice(wcP);
 			expect(dcP.x).toBe(125);
-			expect(dcP.y).toBe(250);
+			expect(dcP.y).toBe(325);
+		});
+
+		it('should translate wc to dc + x-center', function() {
+			let transformCoord = new Coordinate();
+			transformCoord.setViewport(3000, 3000, 5000, 4000);
+			transformCoord.setDevice(1000, 400);
+			let wcP = {x:3500, y:4000};
+			let dcP = transformCoord.worldToDevice(wcP);
+			expect(dcP.x).toBe(300);
+			expect(dcP.y).toBe(400);
 		})
+
 	})	
 })

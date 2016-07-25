@@ -49,12 +49,24 @@ class Coordinate {
 
 			// if scaling x and y are not the same than the min scale is taken
 			// to get sure the viewport completely fits into device.
-
-			// shift x to get viewport centered 
 			if (scaleY > scaleX) {
-				let shiftX = (this.deviceWidth - viewportWidth*scale) / 2;
+				// shift y to get viewport centered 
+				let shiftY = (this.deviceHeight - viewportHeight * scale) / 2;
+				let shiftYMatrix = math.matrix(
+					[ [1,  0, 0     ],
+					  [0,  1, shiftY],
+					  [0,  0, 1] ] );
+				this.translationMatrix = math.multiply(shiftYMatrix, this.translationMatrix);
 			}
-
+			else if (scaleX > scaleY) {
+				// shift x to get viewport centered
+				let shiftX = (this.deviceWidth - viewportWidth * scale) / 2;
+				let shiftXMatrix = math.matrix(
+					[ [1,  0,  shiftX],
+					  [0,  1,  0],
+					  [0,  0,  1] ]	);
+				this.translationMatrix = math.multiply(shiftXMatrix, this.translationMatrix);
+			} 
 		}	
 
 		worldToDevice(wcP) {
