@@ -1,10 +1,10 @@
 
 import * as types from './actionTypes';
-import { Rectangle } from '../Rectangle.js';
-import { databaseStore } from '../DatabaseStore.js';
+import Rectangle from '../Rectangle.js';
+import databaseStore from '../DatabaseStore.js';
 import IaBase from './IaBase';
 
-export class IaRectangle extends IaBase {
+export default class IaRectangle extends IaBase {
     constructor(iaManager) {
         super(iaManager);
     }

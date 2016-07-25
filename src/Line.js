@@ -1,6 +1,5 @@
 
 export default class Line {
-
     constructor(pt1, pt2) {
         this.item = 'line';
         this.p1 = pt1;
@@ -18,3 +17,5 @@ export default class Line {
         drawCanvas.drawLine(this);
     }
 }
+
+

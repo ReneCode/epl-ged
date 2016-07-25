@@ -1,15 +1,20 @@
 
-import { drawCanvas } from './DrawCanvas';
-import { databaseStore } from './DatabaseStore';
-import { iaManager } from './ia/IaManager';
-import { EventPoint } from './ia/EventPoint';
-import { Point } from './Point';
+import drawCanvas  from './DrawCanvas';
+import databaseStore from './DatabaseStore';
+import iaManager from './ia/IaManager';
+import EventPoint from './ia/EventPoint';
+import Point from './Point';
+import Coordinate from './common/Coordinate';
 
 import * as types from './ia/actionTypes';
 
+let coorinateTransform = new Coordinate();
 let canvas = $("#canvas")[0];
 var rect = canvas.getBoundingClientRect();
 var targetCtx = canvas.getContext('2d');
+coorinateTransform.setDevice(rect.right - rect.left,
+							rect.bottom - rect.top);
+coorinateTransform.setViewport(0,0,1000,1000);
 
 drawCanvas.init(targetCtx);
 drawCanvas.resize(rect.right - rect.left, 

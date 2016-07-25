@@ -1,6 +1,4 @@
 
-//import {iaManager} from './iaManager';
-
 class IaBase {
     constructor(iaManager) {
         this._iaManager = iaManager;

@@ -1,7 +1,7 @@
 
-import {IaLine} from './IaLine';
-import {IaPoint} from './IaPoint';
-import {IaRectangle} from './IaRectangle';
+import IaLine from './IaLine';
+import IaPoint from './IaPoint';
+import IaRectangle from './IaRectangle';
 import IaSymbol from './IaSymbol';
 import status from '../status/status';
 
@@ -89,10 +89,9 @@ class IaManager {
         status.clear();
         
     }
-
 }
 
 
-
 // make a singleton
-export let iaManager = new IaManager();
+let iaManager = new IaManager();
+export default iaManager;

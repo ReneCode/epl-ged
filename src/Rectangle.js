@@ -1,5 +1,5 @@
 
-export class Rectangle {
+export default class Rectangle {
 
     constructor(pt, size) {
         this.item = 'rect';

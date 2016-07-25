@@ -1,7 +1,7 @@
 
-import { Line } from './Line.js';
-import { Rectangle } from './Rectangle.js';
-import { drawCanvas } from './DrawCanvas';
+import Line from './Line.js';
+import Rectangle from './Rectangle.js';
+import drawCanvas from './DrawCanvas';
 import itemApi from './api/MockItemApi';
 
 class DatabaseStore {
@@ -94,4 +94,6 @@ class DatabaseStore {
 
 
 // make a singleton
-export let databaseStore = new DatabaseStore();
+let databaseStore = new DatabaseStore();
+export default databaseStore;
+

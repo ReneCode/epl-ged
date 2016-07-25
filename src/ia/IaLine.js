@@ -1,11 +1,11 @@
 
 import * as types from './actionTypes';
 import Line from '../Line';
-import {databaseStore} from '../DatabaseStore';
+import databaseStore from '../DatabaseStore';
 import status from '../status/status';
 import IaBase from './IaBase';
 
-export class IaLine extends IaBase {
+export default class IaLine extends IaBase {
     constructor(iaManager) {
         super(iaManager);
     }

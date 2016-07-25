@@ -3,7 +3,7 @@ import * as types from './actionTypes';
 import status from '../status/status';
 import IaBase from './IaBase';
 
-export class IaPoint extends IaBase {
+export default class IaPoint extends IaBase {
     constructor(iaManager) {
         super(iaManager);
     }

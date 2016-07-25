@@ -83,11 +83,22 @@ class Coordinate {
 				  [0, 0, 1] ]);
 			this.translationMatrix = math.multiply(yAddMatrix, this.translationMatrix);
 			
+			this.translationDcToWc = math.inv( this.translationMatrix );
 		}	
 
 		worldToDevice(wcP) {
 			let vector = math.matrix([wcP.x, wcP.y, 1]);
 			let result = math.multiply(this.translationMatrix, vector);
+			let res = [];
+			result.forEach( (value)  => {
+				res.push(value);
+			})
+			return {x:res[0], y:res[1]};
+		}
+
+		deviceToWorld(dcP) {
+			let vector = math.matrix([dcP.x, dcP.y, 1]);
+			let result = math.multiply(this.translationDcToWc, vector);
 			let res = [];
 			result.forEach( (value)  => {
 				res.push(value);

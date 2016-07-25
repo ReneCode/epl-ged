@@ -1,6 +1,6 @@
 
 import * as types from './actionTypes';
-import {databaseStore} from '../DatabaseStore';
+import databaseStore from '../DatabaseStore';
 import IaBase from './IaBase';
 import status from '../status/status';
 import Line from '../Line';

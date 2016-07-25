@@ -73,4 +73,7 @@ class DrawCanvas {
 }
 
 // singleton
-export let drawCanvas = new DrawCanvas()
+let drawCanvas = new DrawCanvas()
+
+export default drawCanvas;
+

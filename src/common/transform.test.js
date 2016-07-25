@@ -41,7 +41,21 @@ describe('coordinate-mathe', function() {
 			let dcP = transformCoord.worldToDevice(wcP);
 			expect(dcP.x).toBe(300);
 			expect(dcP.y).toBe(0);
-		})
+		});
+
+
+		it('should translate dc to wc', function() {
+			let transformCoord = new Coordinate();
+			transformCoord.setViewport(3000, 3000, 5000, 4000);
+			transformCoord.setDevice(1000, 400);
+			//let wcP = {x:3500, y:4000};
+			let dcP = {x:300, y:0};
+			let wcP = transformCoord.deviceToWorld(dcP);
+			expect(wcP.x).toBe(3500);
+			expect(wcP.y).toBe(4000);
+		});
+
+
 
 	})	
 })

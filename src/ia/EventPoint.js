@@ -1,7 +1,7 @@
 
 import Point from "../Point.js";
 
-export class EventPoint {
+export default class EventPoint {
 
 	constructor(canvas) {
 		this._canvas = canvas;
