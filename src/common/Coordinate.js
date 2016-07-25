@@ -32,40 +32,19 @@ class Coordinate {
 		calcTranslationWcToDc() {
 			// translation
 			let viewportWidth = this.viewportX2 - this.viewportX1;
-			let viewportHeight = this.viewportY2 - this.viewportY1;
-			let transMatrix = math.matrix(
-				[ [1,    0,    -this.viewportX1],
-				  [0,    1,    -this.viewportY1],
-				  [0,    0,    1] ] );
+			let viewportHeight = this.viewportX2 - this.viewportX1;
+			this.translateX = -this.viewportX1;
+			this.translateY = -this.viewportY1;
 			let scaleX = this.deviceWidth / viewportWidth;
 			let scaleY = this.deviceHeight / viewportHeight;
-			let scale = math.min(scaleX, scaleY);
-			let scaleMatrix = math.matrix(
- 				[ [scale,  0,      0],
-				  [0,      scale,  0],
-				  [0,      0,      1] ]);
-			
-
-				console.log("---------" + scale);
-//			console.log( transMatrix );
-//			console.log( scaleMatrix);
-
-			this.translationMatrix = math.multiply(transMatrix, scaleMatrix);
-			console.log( this.translationMatrix);
-
-			this.translationMatrix = scaleMatrix;
-			this.translationMatrix = transMatrix;
-			
+			this.scale = math.min(scaleX, scaleY);
 		}	
 
 		worldToDevice(wcP) {
-			let vector = math.matrix([wcP.x, wcP.y, 1]);
-			let result = math.multiply(this.translationMatrix, vector);
-			let res = [];
-			result.forEach( (value)  => {
-				res.push(value);
-			})
-			return {x:res[0], y:res[1]};
+			return {
+				x: (wcP.x + this.translateX) * this.scale,
+				y: (wcP.y + this.translateY) * this.scale
+			}
 		}
 }
 
