@@ -28,8 +28,9 @@ describe('coordinate-mathe', function() {
 			transformCoord.setViewport(3000, 3000, 5000, 4000);
 			transformCoord.setDevice(500, 400);
 			let wcP = {x:3500, y:4000};
-			let pt = transformCoord.worldToDevice(wcP);
-			console.log(pt);
+			let dcP = transformCoord.worldToDevice(wcP);
+			expect(dcP.x).toBe(125);
+			expect(dcP.y).toBe(250);
 		})
 	})	
 })

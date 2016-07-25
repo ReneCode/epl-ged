@@ -32,19 +32,39 @@ class Coordinate {
 		calcTranslationWcToDc() {
 			// translation
 			let viewportWidth = this.viewportX2 - this.viewportX1;
-			let viewportHeight = this.viewportX2 - this.viewportX1;
-			this.translateX = -this.viewportX1;
-			this.translateY = -this.viewportY1;
+			let viewportHeight = this.viewportY2 - this.viewportY1;
+			let transMatrix = math.matrix(
+				[ [1,    0,    -this.viewportX1],
+				  [0,    1,    -this.viewportY1],
+				  [0,    0,    1] ] );
 			let scaleX = this.deviceWidth / viewportWidth;
 			let scaleY = this.deviceHeight / viewportHeight;
-			this.scale = math.min(scaleX, scaleY);
+			let scale = math.min(scaleX, scaleY);
+			let scaleMatrix = math.matrix(
+ 				[ [scale,  0,      0],
+				  [0,      scale,  0],
+				  [0,      0,      1] ]);
+			
+			this.translationMatrix = math.multiply(scaleMatrix, transMatrix);
+
+			// if scaling x and y are not the same than the min scale is taken
+			// to get sure the viewport completely fits into device.
+
+			// shift x to get viewport centered 
+			if (scaleY > scaleX) {
+				let shiftX = (this.deviceWidth - viewportWidth*scale) / 2;
+			}
+
 		}	
 
 		worldToDevice(wcP) {
-			return {
-				x: (wcP.x + this.translateX) * this.scale,
-				y: (wcP.y + this.translateY) * this.scale
-			}
+			let vector = math.matrix([wcP.x, wcP.y, 1]);
+			let result = math.multiply(this.translationMatrix, vector);
+			let res = [];
+			result.forEach( (value)  => {
+				res.push(value);
+			})
+			return {x:res[0], y:res[1]};
 		}
 }
 
