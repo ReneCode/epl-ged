@@ -12,6 +12,7 @@ let coorinateTransform = new Coordinate();
 let canvas = $("#canvas")[0];
 var rect = canvas.getBoundingClientRect();
 var targetCtx = canvas.getContext('2d');
+
 coorinateTransform.setDevice(rect.right - rect.left,
 							rect.bottom - rect.top);
 coorinateTransform.setViewport(0,0,1000,1000);
