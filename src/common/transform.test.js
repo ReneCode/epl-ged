@@ -30,7 +30,7 @@ describe('coordinate-mathe', function() {
 			let wcP = {x:3500, y:4000};
 			let dcP = transformCoord.worldToDevice(wcP);
 			expect(dcP.x).toBe(125);
-			expect(dcP.y).toBe(325);
+			expect(dcP.y).toBe(75);
 		});
 
 		it('should translate wc to dc + x-center', function() {
@@ -40,7 +40,7 @@ describe('coordinate-mathe', function() {
 			let wcP = {x:3500, y:4000};
 			let dcP = transformCoord.worldToDevice(wcP);
 			expect(dcP.x).toBe(300);
-			expect(dcP.y).toBe(400);
+			expect(dcP.y).toBe(0);
 		})
 
 	})	
