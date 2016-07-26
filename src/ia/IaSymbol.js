@@ -7,9 +7,9 @@ import Line from '../Line';
 
 
 const lines = [
-    {p1:{x:10,y:10}, p2:{x:-10,y:-10}},
-    {p1:{x:10,y:-10}, p2:{x:-10,y:10}},
-    {p1:{x:-10,y:10}, p2:{x:10,y:10}}
+    {p1:{x:50,y:50}, p2:{x:-50,y:-50}},
+    {p1:{x:50,y:-50}, p2:{x:-50,y:50}},
+    {p1:{x:-50,y:50}, p2:{x:50,y:50}}
 ];
 
 class IaSymbol extends IaBase {

@@ -1,6 +1,7 @@
 import * as types from './actionTypes';
 import status from '../status/status';
 import IaBase from './IaBase';
+import Point from '../Point';
 
 export default class IaPoint extends IaBase {
     constructor(iaManager) {
@@ -13,12 +14,10 @@ export default class IaPoint extends IaBase {
 
 
     rasterPoint(p) {
-        const rasterX = 5;
-        const rasterY = 5;
-        return {
-            x: Math.round(p.x / rasterX) * rasterX,
-            y: Math.round(p.y / rasterY) * rasterY
-        };
+        const rasterX = 10;
+        const rasterY = 10;
+        return new Point( Math.round(p.x / rasterX) * rasterX,
+                        Math.round(p.y / rasterY) * rasterY );
     }
 
     onAction(action) {
