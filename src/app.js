@@ -8,16 +8,17 @@ import Coordinate from './common/Coordinate';
 
 import * as types from './ia/actionTypes';
 
-let coorinateTransform = new Coordinate();
+
 let canvas = $("#canvas")[0];
 var rect = canvas.getBoundingClientRect();
 var targetCtx = canvas.getContext('2d');
 
-coorinateTransform.setDevice(rect.right - rect.left,
+let coorinateTransform = new Coordinate();
+coorinateTransform.setDevice(rect.right - rect.left,  
 							rect.bottom - rect.top);
 coorinateTransform.setViewport(0,0,1000,1000);
 
-drawCanvas.init(targetCtx);
+drawCanvas.init(targetCtx, coorinateTransform);
 drawCanvas.resize(rect.right - rect.left, 
 				rect.bottom - rect.top);
 
@@ -44,6 +45,8 @@ $("#canvas").on("mousemove", function(evt) {
 	evt.preventDefault();
 
 	let pt = eventPoint.getPoint(evt);
+	pt = coorinateTransform.deviceToWorld(pt);
+
 	iaManager.dispatch( {type: types.EventMouseMove, 
 						event: {point:pt} } );
 
@@ -52,7 +55,10 @@ $("#canvas").on("mousemove", function(evt) {
 
 $("#canvas").on("click", function(evt) {
 	evt.preventDefault();
+
 	let pt = eventPoint.getPoint(evt);
+	pt = coorinateTransform.deviceToWorld(pt);
+
 	iaManager.dispatch( {type: types.EventLMouseClick, 
 						event: {point:pt} } );
 

@@ -6,8 +6,9 @@ class DrawCanvas {
         this._dirty = false;
     }
 
-    init(targetCtx) {
+    init(targetCtx, coordinateTransform) {
         this._targetCtx = targetCtx;
+        this._coordinateTransform = coordinateTransform;
     }
 
     resize(width, height) {
@@ -46,9 +47,16 @@ class DrawCanvas {
     }
 
 
+
     drawRectangle(rect) {
+        let p1 = this._coordinateTransform.worldToDevice(
+                    {x:rect.x, y:rect.y});
+        let p2 = this._coordinateTransform.worldToDevice(
+                    {x:rect.x + rect.w, y:rect.y + rect.h});
+
         this._bufferCtx.beginPath();
-        this._bufferCtx.rect( rect.x, rect.y, rect.w, rect.h);
+        this._bufferCtx.rect( p1.x, p1.y, 
+                            p2.x - p1.x, p2.y - p1.y);
         this._bufferCtx.stroke();
 
         this.setDirty();
@@ -56,9 +64,11 @@ class DrawCanvas {
 
 
     drawLine(line) {
+        let p1 = this._coordinateTransform.worldToDevice(line.p1);
+        let p2 = this._coordinateTransform.worldToDevice(line.p2);
         this._bufferCtx.beginPath();
-        this._bufferCtx.moveTo( line.p1.x, line.p1.y );
-        this._bufferCtx.lineTo( line.p2.x, line.p2.y );
+        this._bufferCtx.moveTo( p1.x, p1.y );
+        this._bufferCtx.lineTo( p2.x, p2.y );
         this._bufferCtx.stroke();
 
         this.setDirty();
