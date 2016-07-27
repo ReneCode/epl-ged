@@ -1,7 +1,43 @@
 
 body {
-  margin-top: 10px;
+  box-sizing: border-box; 
+  display: flex;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
+
+header {
+  background-color: #eeccaa;
+  height: 50px;
+}
+
+main {
+  height: 100%;
+  display: flex;
+}
+
+article {
+  background-color: #e1d4e0;
+  flex: 3 2 12em;
+}
+
+aside {
+  background-color: #e0ddff;
+}
+
+nav {
+  background-color: #ccd0aa;
+}
+
+footer {
+  background-color: #ccddee;  
+}
+
+nav, aside {
+  flex: 1;
+} 
+
 
 canvas {
   border: 1px solid red;
@@ -15,7 +51,8 @@ canvas:hover {
   list-style-type: none;
   padding-left: 0;
   margin-left: 10px;
-  display: flex;
+  _display: flex;
+  _display: row;
 }
 
 .iamenu > li {
@@ -26,7 +63,7 @@ canvas:hover {
 .status {
   margin-left: 2px;
   font-size: 0.9em;
-  height: 150px;
+  height: 100px;
   color: #3a3a3a;
   background-color: #eaeaea;
 
