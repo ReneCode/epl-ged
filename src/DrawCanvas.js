@@ -18,7 +18,7 @@ class DrawCanvas {
         this._bufferCanvas.height = height;   
     }
 
-    redraw(targetCtx) {
+    _redraw(targetCtx) {
         if (!this._dirty) {
             return;
         }
@@ -83,7 +83,7 @@ class DrawCanvas {
 }
 
 // singleton
-let drawCanvas = new DrawCanvas()
+let drawCanvas = new DrawCanvas();
 
 export default drawCanvas;
 

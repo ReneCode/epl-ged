@@ -11,9 +11,11 @@ class DatabaseStore {
         // temporary items will be deleted after each commit
         // use it for e.g. rubber-band lines
         this._tmpItems = [];
+        this._dirty = false;
     }
 
     deleteAll(callback) {
+        this._dirty = true;
         let ds = this;
         itemApi.deleteAllItems()
         .then( () => {
@@ -29,6 +31,7 @@ class DatabaseStore {
     }
 
     load(callback) {
+        this._dirty = true;
         let ds = this;
         itemApi.getAllItems()
         .then( function(data) {
@@ -58,6 +61,7 @@ class DatabaseStore {
     }
 
     addItem(item, temporary = false) {
+        this._dirty = true;
         if (temporary) {
             this._tmpItems.push(item);
         }
@@ -66,7 +70,6 @@ class DatabaseStore {
         }
 
         if (!temporary) {
-            let ds = this;
             itemApi.saveItem(item)
             .then( function(data) {
                 // may be call some callback
@@ -76,6 +79,9 @@ class DatabaseStore {
 
 
     commit() {
+        if (!this._dirty) {
+            return;
+        }
         drawCanvas.clear();
         this._items.forEach(function(item) {
             item.draw(drawCanvas);

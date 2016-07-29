@@ -10,23 +10,35 @@ import * as types from './ia/actionTypes';
 
 
 let canvas = $("#canvas")[0];
-var rect = canvas.getBoundingClientRect();
 var targetCtx = canvas.getContext('2d');
-
 let coorinateTransform = new Coordinate();
-coorinateTransform.setDevice(rect.right - rect.left,  
-							rect.bottom - rect.top);
 coorinateTransform.setViewport(0,0,1000,1000);
 
 drawCanvas.init(targetCtx, coorinateTransform);
-drawCanvas.resize(rect.right - rect.left, 
-				rect.bottom - rect.top);
 
 databaseStore.init();
 
 reloadCanvas();
 
 let eventPoint = new EventPoint(canvas);
+
+$(document).ready( function() {
+	resizeCanvas();
+});
+
+
+function resizeCanvas() {
+	// strech canvas to the full size of the div 'article'
+	$("#canvas").attr( 'width', $("article").width() );
+	$("#canvas").attr( 'height', $("article").height() );
+
+	let rect = canvas.getBoundingClientRect();
+	coorinateTransform.setDevice(rect.right - rect.left,  
+							rect.bottom - rect.top);
+
+	drawCanvas.resize(rect.right - rect.left, 
+				rect.bottom - rect.top);
+}
 
 
 function reloadCanvas() {
@@ -35,12 +47,16 @@ function reloadCanvas() {
 	});
 }
 
-function redraw() {
-	drawCanvas.redraw(targetCtx);
-}
 
-
-
+$(window).resize(function() {
+	// debugger;	
+	resizeCanvas();
+	setTimeout( () => {
+		// debugger;
+		drawCanvas.setDirty();
+		drawCanvas.show();
+	}, 500);
+});
 $("#canvas").on("mousemove", function(evt) {
 	evt.preventDefault();
 
@@ -78,8 +94,6 @@ $("#aclear").on("click", function(evt) {
 		databaseStore.commit();
 	});
 });
-
-
 
 
 $("#ialine").on("click", function(evt) {

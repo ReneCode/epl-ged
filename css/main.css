@@ -23,15 +23,15 @@ article {
 }
 
 aside {
-  background-color: #e0ddff;
+  background-color: #e0ddf0;
 }
 
 nav {
-  background-color: #ccd0aa;
+  background-color: #ccd0a0;
 }
 
 footer {
-  background-color: #ccddee;  
+  background-color: #ccdde0;  
 }
 
 nav, aside {
@@ -50,7 +50,7 @@ canvas:hover {
 .iamenu {
   list-style-type: none;
   padding-left: 0;
-  margin-left: 10px;
+  _margin-left: 10px;
   _display: flex;
   _display: row;
 }
@@ -61,7 +61,7 @@ canvas:hover {
   border: 1px solid #ddd;
 }
 .status {
-  margin-left: 2px;
+  _margin-left: 2px;
   font-size: 0.9em;
   height: 100px;
   color: #3a3a3a;
