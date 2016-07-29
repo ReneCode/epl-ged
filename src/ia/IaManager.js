@@ -1,9 +1,5 @@
 
-import IaLine from './IaLine';
-import IaPoint from './IaPoint';
-import IaRectangle from './IaRectangle';
-import IaSymbol from './IaSymbol';
-import IaClear from './IaClear';
+
 import status from '../status/status';
 
 class IaManager {
@@ -14,37 +10,22 @@ class IaManager {
         this._iaStack = [];
     }
 
+    registerInteraction(name, ia) {
+        console.log(`registerInteraction:${name}`);
+        let tmp = this._iaMap[name];
+        if (tmp) {
+            // can't register twice
+            assert(false);
+            return;
+        }
+        this._iaMap[name] = ia;
+    }
+
+
     getInteractionByName(name) {
         let ia = this._iaMap[name];
         if (ia == undefined) {
-            // first create the interaction
-            switch (name) {
-                case "IaLine":
-                    ia = new IaLine(this);
-                    break;
-
-                case "IaRectangle":
-                    ia = new IaRectangle(this);
-                    break;
-
-                case "IaPoint":
-                    ia = new IaPoint(this); 
-                    break;
-                
-                case "IaSymbol":
-                    ia = new IaSymbol(this);
-                    break;
-
-                case "IaClear":
-                    ia = new IaClear(this);
-                    break;
-                
-                default:
-                    throw("ia:"+ name + " not found,");
-            }
-            if (ia) {
-                this._iaMap[name] = ia;
-            }
+            throw("ia:"+ name + " not found,");
         }
         return ia;
     }

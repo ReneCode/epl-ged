@@ -2,6 +2,12 @@ import expect from 'expect';
 import Point from './Point';
 
 describe('Point', () => {
+
+    it('should get classname', () => {
+        let pt = new Point(34, 53);
+        expect(pt.constructor.name).toBe("Point");
+    });
+
     it('should create Point', () => {
         let pt = new Point(34,62);
         expect(pt.x).toBe(34);  

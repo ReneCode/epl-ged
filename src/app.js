@@ -2,6 +2,7 @@
 import drawCanvas  from './DrawCanvas';
 import databaseStore from './DatabaseStore';
 import iaManager from './ia/IaManager';
+import IaRegister from './ia/IaRegister';
 import EventPoint from './ia/EventPoint';
 import Point from './Point';
 import Coordinate from './common/Coordinate';
@@ -12,6 +13,8 @@ import * as types from './ia/actionTypes';
 
 let configMenu = new ConfigMenu();
 configMenu.setMenu( require('./menu/main-menu.json'));
+
+let iaRegister = new IaRegister(iaManager); 
 
 let canvas = $("#canvas")[0];
 var targetCtx = canvas.getContext('2d');

@@ -9,8 +9,12 @@ export default class IaClear extends IaBase {
     }
 
     start() {
+        let that = this;
         databaseStore.deleteAll( function() {
     		databaseStore.commit();
+            // stop myself
+            that.stopInteraction("IaClear");
+
 	    });
     }
 
