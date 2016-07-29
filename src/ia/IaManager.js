@@ -3,6 +3,7 @@ import IaLine from './IaLine';
 import IaPoint from './IaPoint';
 import IaRectangle from './IaRectangle';
 import IaSymbol from './IaSymbol';
+import IaClear from './IaClear';
 import status from '../status/status';
 
 class IaManager {
@@ -32,6 +33,10 @@ class IaManager {
                 
                 case "IaSymbol":
                     ia = new IaSymbol(this);
+                    break;
+
+                case "IaClear":
+                    ia = new IaClear(this);
                     break;
                 
                 default:
