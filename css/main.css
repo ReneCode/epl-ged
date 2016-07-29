@@ -34,6 +34,15 @@ footer {
   background-color: #ccdde0;  
 }
 
+#iamenu > li {
+  cursor: pointer;
+}
+#iamenu > li:hover {
+  border: 1px solid black;
+  background-color: #e3eee2;
+}
+
+
 nav, aside {
   flex: 1;
 } 
@@ -47,7 +56,7 @@ canvas:hover {
   cursor: default;
 }
 
-.iamenu {
+#iamenu {
   list-style-type: none;
   padding-left: 0;
   _margin-left: 10px;
@@ -55,7 +64,7 @@ canvas:hover {
   _display: row;
 }
 
-.iamenu > li {
+#iamenu > li {
   padding: 0px 5px 2px;
   font-weight: bold;
   border: 1px solid #ddd;

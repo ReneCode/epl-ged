@@ -1,0 +1,19 @@
+
+module.exports = 
+[
+    { 
+        "text": "Clear",
+        "ia": "IaClear"  },
+    { 
+        "text": "Line",
+        "ia": "IaLine"  },
+    { 
+        "text": "Rectangle",
+        "ia": "IaRectangle"  },
+    { 
+        "text": "Symbol",
+        "ia": "IaSymbol"  },
+    { 
+        "text": "Zoom",
+        "ia": "IaZoom"  }
+];

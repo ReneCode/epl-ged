@@ -5,9 +5,13 @@ import iaManager from './ia/IaManager';
 import EventPoint from './ia/EventPoint';
 import Point from './Point';
 import Coordinate from './common/Coordinate';
+import ConfigMenu from './menu/ConfigMenu';
 
 import * as types from './ia/actionTypes';
 
+
+let configMenu = new ConfigMenu();
+configMenu.setMenu( require('./menu/main-menu.json'));
 
 let canvas = $("#canvas")[0];
 var targetCtx = canvas.getContext('2d');
@@ -106,7 +110,21 @@ $("#iarectangle").on("click", function(evt) {
 	iaManager.start("IaRectangle");
 });
 
+
+
 $("#iasymbol").on("click", function(evt) {
 	iaManager.clearIaStack();
 	iaManager.start("IaSymbol");
+
 });
+
+/*
+export default function doAction(action) {
+	debugger;
+	iaManager.clearIaStack();
+	let ia = action;
+	iaManager.start(ia);
+};
+*/
+
+
