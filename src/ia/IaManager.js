@@ -41,6 +41,18 @@ class IaManager {
         this._iaStack = [];
     }
 
+    // stop the current interaction and remove.
+    // than remove that interaction
+    stop() {
+        let cnt = this._iaStack.length;
+        if (cnt == 0) {
+            return;
+        } 
+        if (this._iaStack[cnt-1].stop) {
+            this._iaStack[cnt-1].stop();
+        }
+        this._iaStack.pop();
+    }
 
     start(name) {
         let ia = this.getInteractionByName(name);

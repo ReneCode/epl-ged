@@ -4,6 +4,7 @@ import IaPoint from './IaPoint';
 import IaRectangle from './IaRectangle';
 import IaSymbol from './IaSymbol';
 import IaClear from './IaClear';
+import IaZoom from './IaZoom';
 
 export default class IaRegister {
     constructor(iaManager) {
@@ -12,6 +13,7 @@ export default class IaRegister {
         new IaRectangle(iaManager);
         new IaSymbol(iaManager);
         new IaClear(iaManager);
+        new IaZoom(iaManager);
 
     }
 }

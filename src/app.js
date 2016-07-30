@@ -88,46 +88,10 @@ $("#canvas").on("click", function(evt) {
 	databaseStore.commit();
 });
 
-$("#canvas").on("keydown", function(evt) {
-	evt.preventDefault();
+$(document).on("keydown", function(evt) {
 	iaManager.dispatch( {type: types.EventKeyPress, 
 						 keyCode: evt.keyCode });
 });
 
-
-
-$("#aclear").on("click", function(evt) {
-	databaseStore.deleteAll( function() {
-		databaseStore.commit();
-	});
-});
-
-
-$("#ialine").on("click", function(evt) {
-	iaManager.clearIaStack();
-	iaManager.start("IaLine");
-});
-
-$("#iarectangle").on("click", function(evt) {
-	iaManager.clearIaStack();
-	iaManager.start("IaRectangle");
-});
-
-
-
-$("#iasymbol").on("click", function(evt) {
-	iaManager.clearIaStack();
-	iaManager.start("IaSymbol");
-
-});
-
-/*
-export default function doAction(action) {
-	debugger;
-	iaManager.clearIaStack();
-	let ia = action;
-	iaManager.start(ia);
-};
-*/
 
 

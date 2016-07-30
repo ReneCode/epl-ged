@@ -1,4 +1,4 @@
-
+    
 class IaBase {
     constructor(iaManager, name = "") {
         this._iaManager = iaManager;

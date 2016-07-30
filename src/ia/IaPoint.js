@@ -35,7 +35,7 @@ export default class IaPoint extends IaBase {
                 break;
             case types.EventKeyPress:
                 if (action.keyCode == 27) {
-                    // excape
+                    // escape
                     this._iaManager.dispatch({type: types.IaPointCancel});
                 }
                 break;
