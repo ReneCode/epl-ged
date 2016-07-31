@@ -11,7 +11,6 @@ class IaManager {
     }
 
     registerInteraction(name, ia) {
-        console.log(`registerInteraction:${name}`);
         let tmp = this._iaMap[name];
         if (tmp) {
             // can't register twice

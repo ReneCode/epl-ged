@@ -1,7 +1,8 @@
 
 import Line from './Line.js';
 import Rectangle from './Rectangle.js';
-import drawCanvas from './DrawCanvas';
+//import drawCanvas from './DrawCanvas';
+import graphicDisplay from './graphic/GraphicDisplay';
 import itemApi from './api/MockItemApi';
 
 class DatabaseStore {
@@ -20,7 +21,7 @@ class DatabaseStore {
         itemApi.deleteAllItems()
         .then( () => {
             ds._items = [];
-            drawCanvas.setDirty();
+            graphicDisplay.setDirty();
             if (callback) {
                 callback();
             }
@@ -32,6 +33,8 @@ class DatabaseStore {
 
     load(callback) {
         this._dirty = true;
+        // todo
+        // use =>  and do not not use ds any more
         let ds = this;
         itemApi.getAllItems()
         .then( function(data) {
@@ -82,19 +85,17 @@ class DatabaseStore {
         if (!this._dirty) {
             return;
         }
-        drawCanvas.clear();
-        this._items.forEach(function(item) {
-            item.draw(drawCanvas);
-        });
+        graphicDisplay.clear();
+
+        graphicDisplay.drawItems(this._items);
 
         // draw the temporary items just once
-        this._tmpItems.forEach(function(item) {
-            item.draw(drawCanvas);
-        });
+        graphicDisplay.drawItems(this._tmpItems);
+
         // now they are gone
         this._tmpItems = [];
         
-        drawCanvas.show();
+        graphicDisplay.show();
     }
 }
 

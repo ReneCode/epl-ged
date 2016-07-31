@@ -1,12 +1,13 @@
 
-import drawCanvas  from './DrawCanvas';
+// import DrawCanvas  from './DrawCanvas';
 import databaseStore from './DatabaseStore';
 import iaManager from './ia/IaManager';
 import IaRegister from './ia/IaRegister';
-import EventPoint from './ia/EventPoint';
+//import EventPoint from './ia/EventPoint';
 import Point from './Point';
-import Coordinate from './common/Coordinate';
+//import CoordinateTransform from './common/CoordinateTransform';
 import ConfigMenu from './menu/ConfigMenu';
+import graphicDisplay from './graphic/GraphicDisplay';
 
 import * as types from './ia/actionTypes';
 
@@ -16,24 +17,28 @@ configMenu.setMenu( require('./menu/main-menu.json'));
 
 let iaRegister = new IaRegister(iaManager); 
 
-let canvas = $("#canvas")[0];
+//let canvas = ;
+graphicDisplay.init($("#canvas")[0]);
+/*
 var targetCtx = canvas.getContext('2d');
-let coorinateTransform = new Coordinate();
+let coorinateTransform = new CoordinateTransform();
 coorinateTransform.setViewport(0,0,1000,1000);
 
+let drawCanvas = new DrawCanvas();
 drawCanvas.init(targetCtx, coorinateTransform);
-
+*/
 databaseStore.init();
 
 reloadCanvas();
 
-let eventPoint = new EventPoint(canvas);
+//let eventPoint = new EventPoint(canvas);
 
 $(document).ready( function() {
-	resizeCanvas();
+	graphicDisplay.resizeCanvas();
 });
 
 
+/*
 function resizeCanvas() {
 	// strech canvas to the full size of the div 'article'
 	$("#canvas").attr( 'width', $("article").width() );
@@ -46,7 +51,7 @@ function resizeCanvas() {
 	drawCanvas.resize(rect.right - rect.left, 
 				rect.bottom - rect.top);
 }
-
+*/
 
 function reloadCanvas() {
 	databaseStore.load( function() {
@@ -56,19 +61,30 @@ function reloadCanvas() {
 
 
 $(window).resize(function() {
-	// debugger;	
+	console.log("resize");
+	graphicDisplay.resizeCanvas();
+
+/*
+	setTimeout( () => {
+
+	}, 500);
+*/
+	/*// debugger;	
 	resizeCanvas();
 	setTimeout( () => {
 		// debugger;
 		drawCanvas.setDirty();
 		drawCanvas.show();
 	}, 500);
+	*/
 });
+
+
 $("#canvas").on("mousemove", function(evt) {
 	evt.preventDefault();
 
-	let pt = eventPoint.getPoint(evt);
-	pt = coorinateTransform.deviceToWorld(pt);
+	let pt = graphicDisplay.getDevicePoint(evt);
+	pt = graphicDisplay.transformDeviceToWorld(pt);
 
 	iaManager.dispatch( {type: types.EventMouseMove, 
 						event: {point:pt} } );
@@ -79,8 +95,8 @@ $("#canvas").on("mousemove", function(evt) {
 $("#canvas").on("click", function(evt) {
 	evt.preventDefault();
 
-	let pt = eventPoint.getPoint(evt);
-	pt = coorinateTransform.deviceToWorld(pt);
+	let pt = graphicDisplay.getDevicePoint(evt);
+	pt = graphicDisplay.transformDeviceToWorld(pt);
 
 	iaManager.dispatch( {type: types.EventLMouseClick, 
 						event: {point:pt} } );

@@ -1,11 +1,11 @@
 
 import expect from 'expect';
 import math from 'mathjs';
-import Coordinate from './Coordinate';
+import CoordinateTransform from './CoordinateTransform';
 
 
 
-describe('coordinate-mathe', function() {
+describe('coordinate-math', function() {
 	describe('Matrix testing', () => {
 		it('multiply two matrices', () => {
 			let a = math.matrix([[1,2,3],[2,3,4],[3,4,5]]);
@@ -22,9 +22,9 @@ describe('coordinate-mathe', function() {
 		})
 	});
 
-	describe('wc2dc transform', function() {
+	describe('CoordinateTransform', function() {
 		it('should translate wc to dc + y-center', function() {
-			let transformCoord = new Coordinate();
+			let transformCoord = new CoordinateTransform();
 			transformCoord.setViewport(3000, 3000, 5000, 4000);
 			transformCoord.setDevice(500, 400);
 			let wcP = {x:3500, y:4000};
@@ -34,7 +34,7 @@ describe('coordinate-mathe', function() {
 		});
 
 		it('should translate wc to dc + x-center', function() {
-			let transformCoord = new Coordinate();
+			let transformCoord = new CoordinateTransform();
 			transformCoord.setViewport(3000, 3000, 5000, 4000);
 			transformCoord.setDevice(1000, 400);
 			let wcP = {x:3500, y:4000};
@@ -45,7 +45,7 @@ describe('coordinate-mathe', function() {
 
 
 		it('should translate dc to wc', function() {
-			let transformCoord = new Coordinate();
+			let transformCoord = new CoordinateTransform();
 			transformCoord.setViewport(3000, 3000, 5000, 4000);
 			transformCoord.setDevice(1000, 400);
 			//let wcP = {x:3500, y:4000};

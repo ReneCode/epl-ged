@@ -1,7 +1,7 @@
 
 import math from 'mathjs';
 
-class Coordinate {
+class CoordinateTransform {
 		constructor() {
 			this.viewportX1 = 300;
 			this.viewportY1 = 500;
@@ -107,5 +107,5 @@ class Coordinate {
 		}
 }
 
-export default Coordinate;
+export default CoordinateTransform;
 

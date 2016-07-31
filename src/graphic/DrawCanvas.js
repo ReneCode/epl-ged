@@ -46,6 +46,11 @@ class DrawCanvas {
         }
     }
 
+    drawItems(items) {
+        items.forEach( (item) => {
+            item.draw(this);
+        });
+    }
 
 
     drawRectangle(rect) {
@@ -83,7 +88,7 @@ class DrawCanvas {
 }
 
 // singleton
-let drawCanvas = new DrawCanvas();
+// let drawCanvas = new DrawCanvas();
 
-export default drawCanvas;
+export default DrawCanvas;
 

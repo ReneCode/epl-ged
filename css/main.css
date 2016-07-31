@@ -1,20 +1,22 @@
 
 body {
   box-sizing: border-box; 
-  display: flex;
   height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-header {
+.page-header {
   background-color: #eeccaa;
-  height: 50px;
+  margin: 0px;
+  padding: 2px;
 }
 
 main {
   height: 100%;
   display: flex;
+  display: box;
+  flex-direction: row;
 }
 
 article {
@@ -22,7 +24,8 @@ article {
   flex: 3 2 12em;
 }
 
-aside {
+nav, aside {
+  flex: 1;
   background-color: #e0ddf0;
 }
 
@@ -34,21 +37,14 @@ footer {
   background-color: #ccdde0;  
 }
 
-#iamenu > li {
-  cursor: pointer;
-}
 #iamenu > li:hover {
+  cursor: pointer;
   border: 1px solid black;
   background-color: #e3eee2;
 }
 
-
-nav, aside {
-  flex: 1;
-} 
-
-
 canvas {
+  _box-shadow: inset 0 0 1px #f00; 
   border: 1px solid red;
 }
 
@@ -60,8 +56,6 @@ canvas:hover {
   list-style-type: none;
   padding-left: 0;
   _margin-left: 10px;
-  _display: flex;
-  _display: row;
 }
 
 #iamenu > li {
@@ -70,7 +64,6 @@ canvas:hover {
   border: 1px solid #ddd;
 }
 .status {
-  _margin-left: 2px;
   font-size: 0.9em;
   height: 100px;
   color: #3a3a3a;
