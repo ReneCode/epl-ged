@@ -64,10 +64,9 @@ canvas:hover {
   border: 1px solid #ddd;
 }
 .status {
-  font-size: 0.9em;
   height: 100px;
   color: #3a3a3a;
   background-color: #eaeaea;
-
   overflow-y: scroll;
 }
+

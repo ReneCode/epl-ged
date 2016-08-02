@@ -3,7 +3,8 @@ import * as types from './actionTypes';
 import Rectangle from '../Rectangle.js';
 import databaseStore from '../DatabaseStore.js';
 import IaBase from './IaBase';
-
+import command from '../Command/Command.js';
+import * as commands from '../Command/CommandTypes';
 
 export default class IaZoom extends IaBase {
     constructor(iaManager) {
@@ -38,9 +39,11 @@ export default class IaZoom extends IaBase {
                 }
                 else {
 					this._iaManager.stop("IaPoint");
-					// set device view
+                    let w = action.data.point.x - this._p1.x;
+                    let h = action.data.point.y - this._p1.y;
 
-
+                    command.execute(commands.CmdZoom, {x:this._p1, y:this._p1.y,
+                                                        w:w, h:h } );
 					// stop current interaction and the IaPoint (started by me)
 					this._iaManager.stop();
                 }
