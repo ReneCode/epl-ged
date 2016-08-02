@@ -1,12 +1,14 @@
 
+import CmdZoom from './CmdZoom';
+
+import command from './Command';
 
 class CommandRegister {
-	register() {
 
-		this.register( new (require('./CmdZoom').default)() );
+	registerAllCommands() {
+		command.register( new CmdZoom() );
 
 	}
 }
-
 
 export default CommandRegister;

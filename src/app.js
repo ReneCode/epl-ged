@@ -1,16 +1,17 @@
 
-// import DrawCanvas  from './DrawCanvas';
 import databaseStore from './DatabaseStore';
 import iaManager from './ia/IaManager';
 import IaRegister from './ia/IaRegister';
-//import EventPoint from './ia/EventPoint';
 import Point from './Point';
-//import CoordinateTransform from './common/CoordinateTransform';
 import ConfigMenu from './menu/ConfigMenu';
 import graphicDisplay from './graphic/GraphicDisplay';
+import CommandRegister from './command/CommandRegister';
 
 import * as types from './ia/actionTypes';
 
+
+let commandRegister = new CommandRegister();
+commandRegister.registerAllCommands();
 
 let configMenu = new ConfigMenu();
 configMenu.setMenu( require('./menu/main-menu.json'));

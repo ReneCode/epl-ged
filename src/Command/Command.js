@@ -25,4 +25,5 @@ class Command {
 }
 
 
-export default new Command();
+let command = new Command();
+export default command;

@@ -1,4 +1,3 @@
-
 import graphicDisplay from '../graphic/GraphicDisplay';
 
 class CmdZoom {
@@ -12,3 +11,4 @@ class CmdZoom {
 }
 
 export default CmdZoom;
+

@@ -1,2 +1,2 @@
 
-export const CmdZoom = "Zoom"; 
+export const cmdZoom = "Zoom"; 
