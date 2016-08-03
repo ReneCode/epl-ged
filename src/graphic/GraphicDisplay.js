@@ -54,6 +54,10 @@ class GraphicDisplay {
 		this._drawCanvas.drawItems(items);
 	}
 
+	transformWorldToDevice(pt) {
+		return this._coordinateTransform.worldToDevice(pt);
+	}
+
 
 	transformDeviceToWorld(pt) {
 		return this._coordinateTransform.deviceToWorld(pt);

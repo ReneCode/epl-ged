@@ -24,7 +24,7 @@ class IaManager {
     getInteractionByName(name) {
         let ia = this._iaMap[name];
         if (ia == undefined) {
-            throw("ia:"+ name + " not found,");
+            throw new Error("interaction: "+ name + " not found.");
         }
         return ia;
     }

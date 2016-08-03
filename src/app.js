@@ -36,6 +36,10 @@ reloadCanvas();
 
 $(document).ready( function() {
 	graphicDisplay.resizeCanvas();
+
+	iaManager.clearIaStack();
+	iaManager.start("IaSelect");
+
 });
 
 
