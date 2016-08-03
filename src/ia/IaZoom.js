@@ -3,8 +3,8 @@ import * as types from './actionTypes';
 import Rectangle from '../Rectangle.js';
 import databaseStore from '../DatabaseStore.js';
 import IaBase from './IaBase';
-import command from '../Command/Command.js';
-import * as commands from '../Command/CommandTypes';
+import command from '../command/Command.js';
+import * as commands from '../command/CommandTypes';
 
 export default class IaZoom extends IaBase {
     constructor(iaManager) {

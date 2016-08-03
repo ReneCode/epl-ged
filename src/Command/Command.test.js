@@ -15,11 +15,11 @@ describe('Command', function() {
 	it('execute cmd with data', function() {
 		class CmdMock {
 			constructor() {
-				this._exectuteCount = 0;
+				this._executeCount = 0;
 			}
 			execute(data) {
 				this._data = data;
-				this._exectuteCount++;
+				this._executeCount++;
 			}
 		}
 		let cmdMock = new CmdMock();
@@ -28,12 +28,12 @@ describe('Command', function() {
 
 		let data = { x: 4711, text:"hallo"};
 		command.execute("Mock", data);
-		expect(cmdMock._exectuteCount).toBe(1);
+		expect(cmdMock._executeCount).toBe(1);
 		expect(cmdMock._data.x).toBe( data.x );
 		expect(cmdMock._data.text).toBe( data.text );
 
 		command.execute("Mock", data);
-		expect(cmdMock._exectuteCount).toBe(2);
+		expect(cmdMock._executeCount).toBe(2);
 
 	});
 });
