@@ -21,6 +21,9 @@ class Command {
 		if (cmd  &&  cmd.execute) {
 			cmd.execute(data);
 		}
+		else {
+			throw new Error("can't execture command: " + command);
+		}
 	}
 }
 

@@ -15,11 +15,10 @@ class CoordinateTransform {
 		}
 
 		setViewport(x1, y1, x2, y2) {
-			this.viewportX1 = x1;
-			this.viewportY1 = y1;
-			this.viewportX2 = x2;
-			this.viewportY2 = y2;
-
+			this.viewportX1 = math.min(x1, x2);
+			this.viewportY1 = math.min(y1, y2);
+			this.viewportX2 = math.max(x1, x2);
+			this.viewportY2 = math.max(y1, y2);
 			this.calcTranslationWcToDc();
 		}
 

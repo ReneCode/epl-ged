@@ -1,12 +1,11 @@
 import graphicDisplay from '../graphic/GraphicDisplay';
+import databaseStore from '../DatabaseStore';
 
 class CmdZoom {
-	execute(data) {
+	execute(view) {
 		// set device view
-		graphicDisplay.setViewport(data.x, data.y,
-						data.x + data.w, data.y + data.h);
-		graphicDisplay.resizeCanvas();
-
+		graphicDisplay.setViewport(view);
+		databaseStore.redraw();
 	}
 }
 

@@ -32,6 +32,12 @@ class GraphicDisplay {
 					rect.bottom - rect.top);
 	}
 
+	// view = {x, y, w, h}
+	setViewport(view) {
+		this._coordinateTransform.setViewport(view.x, view.y, 
+							view.x + view.w, view.y + view.h);
+	}
+
 	setDirty() {
 		this._drawCanvas.setDirty();
 	}

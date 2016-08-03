@@ -42,7 +42,7 @@ export default class IaZoom extends IaBase {
                     let w = action.data.point.x - this._p1.x;
                     let h = action.data.point.y - this._p1.y;
 
-                    command.execute(commands.cmdZoom, {x:this._p1, y:this._p1.y,
+                    command.execute(commands.cmdZoom, {x:this._p1.x, y:this._p1.y,
                                                         w:w, h:h } );
 					// stop current interaction and the IaPoint (started by me)
 					this._iaManager.stop();

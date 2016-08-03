@@ -80,6 +80,11 @@ class DatabaseStore {
         }
     }
 
+    redraw() {
+        graphicDisplay.clear();
+        graphicDisplay.drawItems(this._items);
+        graphicDisplay.show();  
+    }
 
     commit() {
         if (!this._dirty) {

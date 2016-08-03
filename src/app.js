@@ -64,21 +64,19 @@ function reloadCanvas() {
 $(window).resize(function() {
 	console.log("resize");
 	graphicDisplay.resizeCanvas();
+});
 
 /*
 	setTimeout( () => {
 
 	}, 500);
-*/
-	/*// debugger;	
+
 	resizeCanvas();
 	setTimeout( () => {
-		// debugger;
 		drawCanvas.setDirty();
 		drawCanvas.show();
 	}, 500);
 	*/
-});
 
 
 $("#canvas").on("mousemove", function(evt) {
