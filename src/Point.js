@@ -8,5 +8,9 @@ export default class Point {
 	add(pt) {
 		return new Point(this.x + pt.x, this.y + pt.y);
 	}
+
+	sub(pt) {
+		return new Point(this.x - pt.x, this.y - pt.y);
+	}
 }
 
