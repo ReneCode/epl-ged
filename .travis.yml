@@ -6,6 +6,6 @@ node_js: 5.11
 services: 
 - docker
 
-before_install:
+after_sucess:
 - docker build -t relang/epl-ged .
 

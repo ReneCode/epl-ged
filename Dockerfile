@@ -1,10 +1,9 @@
 
-FROM node:4.4-wheezy
 
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
-COPY . /usr/src/app
+FROM nginx
 
-EXPOSE 3000
+WORKDIR /usr/share/nginx/html
+COPY index.html .
+COPY css/ ./css/
+COPY public/ ./public/
 
-CMD ["npm", "start"]
